@@ -1,8 +1,14 @@
-const express = require('express');
+const APIFeatures = require('../utils/apiFeatures');
 
 exports.getAllMedia = (res, req, next) => {
-    // 1) Create a variable for the query
-
-    // 2) then send a respon back with the data  
-    next();
-}
+    try {
+        const medias = new APIFeatures(req.query, req.queryString).sort().filter().page().skip()
+    } catch (err) {
+        res.status(404).json({
+            status: 'fail',
+            message: 'ya did done wrong ',
+            data: {
+                medias
+            }
+        })
+    }
