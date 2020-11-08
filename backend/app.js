@@ -6,6 +6,7 @@ const mediaRouter = require('./routes/mediaRoutes');
 const app = express();
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
+
 // 1) MIDDLEWARES
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
