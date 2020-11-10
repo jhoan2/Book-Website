@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 
 const mediaRouter = require('./routes/mediaRoutes');
+const userRouter = require('./routes/userRoutes');
 
 const app = express();
 const AppError = require('./utils/appError');
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 
 // 3) ROUTES
 app.use('/api/v1/media', mediaRouter);
+app.use('/api/v1/users', userRouter);
 
 //HANDLING UNHANDLED ROUTES
 app.all('*', (req, res, next) => {
