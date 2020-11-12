@@ -1,5 +1,5 @@
-const crypto = require('crypto');
-const { promisify } = require('util');
+// const crypto = require('crypto');
+// const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
@@ -23,7 +23,7 @@ const createSendToken = (user, statusCode, res) => {
 
   res.cookie(res, token, cookieOptions);
   user.password = undefined;
-  res.status(200).json({
+  res.status(statusCode).json({
     status: 'success',
     token,
     data: {
@@ -32,6 +32,29 @@ const createSendToken = (user, statusCode, res) => {
   });
 };
 
+exports.signUp = catchAsync(async (req, res, next) => {
+  const newUser = await User.create({
+    name: req.body.name,
+    email: req.body.email,
+    role: req.body.role,
+    password: req.body.password,
+    passwordConfirm: req.body.passwordConfirm,
+  });
+  createSendToken(newUser, 201, res);
+});
 
-exports.signUp = 
+exports.login = catchAsync(async (req, res, next) => {
+  const { email, password } = req.body;
 
+  if (!email || !password) {
+    return next(new AppError('Please provide an email or password', 400));
+  }
+
+  const user = await User.findOne({ email }).select('+password');
+
+  if (!user || !(await user.passwordCheck(password, user.password))) {
+    return next(new AppError('Incorrect email or password', 400));
+  }
+
+  createSendToken(user, 200, res);
+});

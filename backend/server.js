@@ -1,9 +1,6 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const app = require('./app');
-const jwt = require('jsonwebtoken');
-const { response } = require('express');
-const { request } = require('./app');
 
 dotenv.config({ path: './config.env' });
 
@@ -30,7 +27,7 @@ mongoose
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
   console.log(`App running on port ${port}...`);
-  console.log(Object.getOwnPropertyNames(jwt));
+  // console.log(Object.getOwnPropertyNames(request));
 });
 
 process.on('unhandledRejection', (err) => {
