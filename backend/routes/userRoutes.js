@@ -9,11 +9,18 @@ const {
   createUser,
 } = require('../controllers/userController');
 
-const { signUp, login } = require('../controllers/authController');
+const {
+  signUp,
+  login,
+  restrictTo,
+  protect,
+} = require('../controllers/authController');
 
-router.route('/').get(getAllUsers).post(createUser);
-router.route('/:id').get(getUser).delete(deleteUser).patch(updateUser);
 router.post('/signup', signUp);
 router.post('/login', login);
+router.use(protect);
+router.use(restrictTo('admin'));
+router.route('/').get(getAllUsers).post(createUser);
+router.route('/:id').get(getUser).delete(deleteUser).patch(updateUser);
 
 module.exports = router;

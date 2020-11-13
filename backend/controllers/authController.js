@@ -1,5 +1,5 @@
 // const crypto = require('crypto');
-// const { promisify } = require('util');
+const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
@@ -21,7 +21,7 @@ const createSendToken = (user, statusCode, res) => {
   };
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
-  res.cookie(res, token, cookieOptions);
+  res.cookie('jwt', token, cookieOptions);
   user.password = undefined;
   res.status(statusCode).json({
     status: 'success',
@@ -55,6 +55,49 @@ exports.login = catchAsync(async (req, res, next) => {
   if (!user || !(await user.passwordCheck(password, user.password))) {
     return next(new AppError('Incorrect email or password', 400));
   }
-
   createSendToken(user, 200, res);
 });
+
+exports.protect = catchAsync(async (req, res, next) => {
+  let token;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    token = req.headers.authorization.split(' ')[1];
+  }
+
+  if (!token) {
+    return next(new AppError('You need to sign in', 400));
+  }
+
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  // Check if the user exists
+  const currentUser = await User.findById(decoded.id);
+  if (!currentUser) {
+    return next(
+      new AppError('The user belonging to this token does not exist', 401)
+    );
+  }
+  // Check if the password was changed for the user
+  if (currentUser.changedPasswordAfter(decoded.iat)) {
+    return next(
+      new AppError('User recently changed password. Please log in again', 401)
+    );
+  }
+  // Grants access to protected route
+  req.user = currentUser;
+  next();
+});
+
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new AppError('You do not have permission to perform this action', 403)
+      );
+    }
+
+    next();
+  };
+};
