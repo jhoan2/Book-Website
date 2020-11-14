@@ -1,0 +1,12 @@
+.toolbar {
+  background-color: #4c5760;
+}
+
+.homeIcon {
+  color: black;
+}
+
+.headerButtons {
+  position: absolute;
+  right: 50px;
+}
