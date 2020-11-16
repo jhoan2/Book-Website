@@ -44,28 +44,28 @@ function CardItem() {
               <Divider />
               <CardContent>
                 <Grid container className={classes.root} spacing={2} >
-                  <Grid item xs={1} >
+                  <Grid item xs={1} sm={2}>
                     <GradeIcon></GradeIcon>
                   </Grid>
-                  <Grid item xs={5} >
+                  <Grid item xs={5} sm={4}>
                     <Typography display='inline' >4/5 Rating</Typography>
                   </Grid>
-                  <Grid item xs={1} >
+                  <Grid item xs={1} sm={2}>
                     <MenuBookIcon>2</MenuBookIcon>
                   </Grid>
-                  <Grid item xs={5} >
+                  <Grid item xs={5} sm={4}>
                     <Typography display='inline' >Bussiness</Typography>
                   </Grid>
-                  <Grid item xs={1} >
+                  <Grid item xs={1} sm={2}>
                     <FeaturedVideoIcon></FeaturedVideoIcon>
                   </Grid>
-                  <Grid item xs={5} >
+                  <Grid item xs={5} sm={4}>
                     <Typography display='inline' >26 Reviews</Typography>
                   </Grid>
-                  <Grid item xs={1} >
+                  <Grid item xs={1} sm={2}>
                     <PermMediaIcon></PermMediaIcon>
                   </Grid>
-                  <Grid item xs={5} >
+                  <Grid item xs={5} sm={4}>
                     <Typography display='inline' >Book</Typography>
                   </Grid>
                 </Grid>
