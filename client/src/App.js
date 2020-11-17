@@ -18,7 +18,7 @@ const App = () => {
         <div>
             <Header />
             <br/>
-            <Grid container spacing={3} className={classes.gridContainer} >
+            <Grid container spacing={3} className={classes.gridContainer}>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
                     <CardItem />
                 </Grid>

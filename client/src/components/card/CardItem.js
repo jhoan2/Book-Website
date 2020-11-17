@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardMedia, CardHeader, Grid, CardContent, Divider, Typography } from '@material-ui/core';
+import { Card, CardMedia, CardHeader, Grid, CardContent, Divider, Typography, Button } from '@material-ui/core';
 import './card.css';
 import book from './assets/book.jpg';
 import Avatar from '@material-ui/core/Avatar';
@@ -9,6 +9,7 @@ import GradeIcon from '@material-ui/icons/Grade';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import PermMediaIcon from '@material-ui/icons/PermMedia';
 import FeaturedVideoIcon from '@material-ui/icons/FeaturedVideo';
+import SaveIcon from '@material-ui/icons/Save';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: red[500],
   },
+  cardButtons: {
+    paddingTop: '20px'
+  }
 }));
 
 function CardItem() {
@@ -54,7 +58,7 @@ function CardItem() {
                     <MenuBookIcon>2</MenuBookIcon>
                   </Grid>
                   <Grid item xs={5} sm={4}>
-                    <Typography display='inline' >Bussiness</Typography>
+                    <Typography display='inline' >Business</Typography>
                   </Grid>
                   <Grid item xs={1} sm={2}>
                     <FeaturedVideoIcon></FeaturedVideoIcon>
@@ -68,6 +72,24 @@ function CardItem() {
                   <Grid item xs={5} sm={4}>
                     <Typography display='inline' >Book</Typography>
                   </Grid>
+                </Grid>
+                <Grid container 
+                  alignItems="flex-end" 
+                  justify="space-around"
+                  className={classes.cardButtons}
+                >
+                    <Grid item xs={3}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      startIcon={<SaveIcon />}
+                    >
+                      Save
+                    </Button>
+                    </Grid>
+                    <Grid item xs={3} >
+                      <Button variant='contained'>Details</Button>
+                    </Grid>
                 </Grid>
               </CardContent>
             </Card>
