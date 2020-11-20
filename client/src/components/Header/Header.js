@@ -2,20 +2,31 @@ import React from 'react'
 import { Toolbar, Typography, IconButton, Button, ButtonGroup } from '@material-ui/core';
 import './header.css';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import { Link } from  "react-router-dom";
 
 const Header = () => {
     return (
         <div>
                 <Toolbar variant='regular' className='toolbar'>
-                    <IconButton >
-                        <LibraryBooksIcon className='homeIcon' />
-                    </IconButton>
+                    <Link to='/'>
+                        <IconButton >
+                            <LibraryBooksIcon className='homeIcon' />
+                        </IconButton>
+                    </Link>
                     <Typography variant='h6' >
                         Book-Website
                     </Typography>
                         <ButtonGroup size='large' className='headerButtons' variant='contained'>
-                            <Button className='loginButton'>Login</Button>
-                            <Button className='signUpButton'>Sign Up</Button>
+                                <Link to='/login'>
+                                    <Button className='loginButton'>
+                                            Login
+                                    </Button>        
+                                 </Link>
+                                 <Link to='/signup'>
+                                    <Button className='signUpButton'>
+                                        Sign Up
+                                    </Button>
+                                 </Link>
                         </ButtonGroup>
                 </Toolbar>                
         </div>
