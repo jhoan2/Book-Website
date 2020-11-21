@@ -1,22 +1,27 @@
-import React from 'react';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import {
-  Grid,
-  Paper,
-  Typography,
-  TextField,
-  Button,
-  Box,
-} from '@material-ui/core';
+import React from "react";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import { makeStyles } from "@material-ui/core/styles";
+import { Grid, Paper, Typography, TextField, Button } from "@material-ui/core";
 
+const useStyles = makeStyles({
+  paper: {
+    minHeight: "75vh",
+  },
+  footer: {
+    height: "50px",
+  },
+});
 export default function Login() {
+  const classes = useStyles();
   return (
     <div>
-      <Header />
-      <br />
-      <Box height="100%" width="100%" display="inline-block">
-        <Paper elevation={3}>
+      <div>
+        <Header />
+        <br />
+      </div>
+      <div>
+        <Paper elevation={3} className={classes.paper}>
           <Grid
             container
             direction="column"
@@ -50,9 +55,11 @@ export default function Login() {
             </Grid>
           </Grid>
         </Paper>
-      </Box>
-      <br />
-      <Footer />
+      </div>
+      <div>
+        <br />
+        <Footer className={classes.footer} />
+      </div>
     </div>
   );
 }
