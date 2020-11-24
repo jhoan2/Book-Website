@@ -1,20 +1,21 @@
-const express = require('express');
+import express from 'express';
 
-const router = express.Router();
-const {
+import {
   getAllUsers,
   getUser,
   deleteUser,
   updateUser,
   createUser,
-} = require('../controllers/userController');
+} from '../controllers/userController.js';
 
-const {
+import {
   signUp,
   login,
   restrictTo,
   protect,
-} = require('../controllers/authController');
+} from '../controllers/authController.js';
+
+const router = express.Router();
 
 router.post('/signup', signUp);
 router.post('/login', login);
@@ -23,4 +24,4 @@ router.use(restrictTo('admin'));
 router.route('/').get(getAllUsers).post(createUser);
 router.route('/:id').get(getUser).delete(deleteUser).patch(updateUser);
 
-module.exports = router;
+export default router;

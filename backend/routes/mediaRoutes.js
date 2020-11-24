@@ -1,14 +1,14 @@
-const express = require('express');
+import express from 'express';
 
-const {
+import {
   getAllMedia,
   createMedia,
   updateMedia,
   getMedia,
   deleteMedia,
-} = require('../controllers/mediaController');
+} from '../controllers/mediaController.js';
 
-const { protect, restrictTo } = require('../controllers/authController');
+import { protect, restrictTo } from '../controllers/authController.js';
 
 const router = express.Router();
 
@@ -17,4 +17,4 @@ router.use(restrictTo('admin'));
 router.route('/').get(getAllMedia).post(createMedia);
 router.route('/:id').patch(updateMedia).get(getMedia).delete(deleteMedia);
 
-module.exports = router;
+export default router;

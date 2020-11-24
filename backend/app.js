@@ -1,19 +1,21 @@
-const express = require('express');
-const morgan = require('morgan');
-const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
-const mongoSanitize = require('express-mongo-sanitize');
-const xss = require('xss-clean');
-const hpp = require('hpp');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+/* eslint-disable import/extensions */
+import express from 'express';
+import morgan from 'morgan';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
+import mongoSanitize from 'express-mongo-sanitize';
+import xss from 'xss-clean';
+import hpp from 'hpp';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
-const mediaRouter = require('./routes/mediaRoutes');
-const userRouter = require('./routes/userRoutes');
+import mediaRouter from './routes/mediaRoutes.js';
+import userRouter from './routes/userRoutes.js';
+
+import AppError from './utils/appError.js';
+import globalErrorHandler from './controllers/errorController.js';
 
 const app = express();
-const AppError = require('./utils/appError');
-const globalErrorHandler = require('./controllers/errorController');
 
 // 1) MIDDLEWARES
 if (process.env.NODE_ENV === 'development') {
@@ -63,4 +65,4 @@ app.all('*', (req, res, next) => {
 });
 
 app.use(globalErrorHandler);
-module.exports = app;
+export default app;

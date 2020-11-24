@@ -1,9 +1,10 @@
-const catchAsync = require('../utils/catchAsync');
-const APIFeatures = require('../utils/apiFeatures');
-const AppError = require('../utils/appError');
-// const AppError = require('../utils/appError');
+/* eslint-disable import/extensions */
+import catchAsync from '../utils/catchAsync.js';
+import APIFeatures from '../utils/apiFeatures.js';
+import AppError from '../utils/appError.js';
+// const AppError from require('../utils/appError');
 
-exports.getAll = (Model) =>
+const getAll = (Model) =>
   catchAsync(async (req, res, next) => {
     // let filter = {};
     // if (req.params.tourId) filter = { tour: req.params.tourId };
@@ -24,7 +25,7 @@ exports.getAll = (Model) =>
     });
   });
 
-exports.createOne = (Model) =>
+const createOne = (Model) =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.create(req.body);
 
@@ -36,7 +37,7 @@ exports.createOne = (Model) =>
     });
   });
 
-exports.updateOne = (Model) =>
+const updateOne = (Model) =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -55,7 +56,7 @@ exports.updateOne = (Model) =>
     });
   });
 
-exports.getOne = (Model) =>
+const getOne = (Model) =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findById(req.params.id);
     if (!doc) {
@@ -69,7 +70,7 @@ exports.getOne = (Model) =>
     });
   });
 
-exports.deleteOne = (Model) =>
+const deleteOne = (Model) =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findByIdAndDelete(req.params.id);
 
@@ -82,3 +83,5 @@ exports.deleteOne = (Model) =>
       data: null,
     });
   });
+
+export { getAll, createOne, updateOne, getOne, deleteOne };

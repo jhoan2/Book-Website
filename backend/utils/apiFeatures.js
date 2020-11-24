@@ -45,4 +45,4 @@ class APIFeatues {
   }
 }
 
-module.exports = APIFeatues;
+export default APIFeatues;

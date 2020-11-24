@@ -1,8 +1,16 @@
-const User = require('../models/userModel');
-const factory = require('./handlerFactory');
+import User from '../models/userModel.js';
+import {
+  getAll,
+  createOne,
+  updateOne,
+  getOne,
+  deleteOne,
+} from './handlerFactory.js';
 
-exports.createUser = factory.createOne(User);
-exports.getUser = factory.getOne(User);
-exports.deleteUser = factory.deleteOne(User);
-exports.updateUser = factory.updateOne(User);
-exports.getAllUsers = factory.getAll(User);
+const createUser = createOne(User);
+const getUser = getOne(User);
+const deleteUser = deleteOne(User);
+const updateUser = updateOne(User);
+const getAllUsers = getAll(User);
+
+export { createUser, getUser, deleteUser, updateUser, getAllUsers };

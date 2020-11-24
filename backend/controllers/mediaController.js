@@ -1,8 +1,17 @@
-const Media = require('../models/mediaModel');
-const factory = require('./handlerFactory');
+/* eslint-disable import/extensions */
+import Media from '../models/mediaModel.js';
+import {
+  getAll,
+  createOne,
+  updateOne,
+  getOne,
+  deleteOne,
+} from './handlerFactory.js';
 
-exports.getAllMedia = factory.getAll(Media);
-exports.createMedia = factory.createOne(Media);
-exports.updateMedia = factory.updateOne(Media);
-exports.getMedia = factory.getOne(Media);
-exports.deleteMedia = factory.deleteOne(Media);
+const getAllMedia = getAll(Media);
+const createMedia = createOne(Media);
+const updateMedia = updateOne(Media);
+const getMedia = getOne(Media);
+const deleteMedia = deleteOne(Media);
+
+export { getAllMedia, createMedia, updateMedia, getMedia, deleteMedia };

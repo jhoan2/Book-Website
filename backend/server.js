@@ -1,6 +1,7 @@
-const dotenv = require('dotenv');
-const mongoose = require('mongoose');
-const app = require('./app');
+/* eslint-disable import/extensions */
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import app from './app.js';
 
 dotenv.config({ path: './config.env' });
 
