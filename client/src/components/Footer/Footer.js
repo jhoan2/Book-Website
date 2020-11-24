@@ -14,11 +14,9 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     width: "100%",
-    position: "fixed",
-    bottom: 0,
-    left: 0,
   },
 }));
+
 const Footer = () => {
   const classes = useStyles();
   return (

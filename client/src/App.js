@@ -1,22 +1,18 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Landingpage from './components/views/Landingpage';
-import Login from './components/views/Login';
-import Signup from './components/views/Signup';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import Landingpage from "./components/views/Landingpage";
+import Login from "./components/views/Login";
+import Signup from "./components/views/Signup";
+import ProductScreen from "./components/views/ProductScreen";
 
 const App = () => {
   return (
     <div>
       <Switch>
-        <Route path="/signup">
-          <Signup />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/">
-          <Landingpage />
-        </Route>
+        <Route path="/product/:id" component={ProductScreen} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/login" component={Login} />
+        <Route path="/" component={Landingpage} />
       </Switch>
     </div>
   );
