@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import Media from '../models/mediaModel.js';
 import {
   getAll,

@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import catchAsync from '../utils/catchAsync.js';
 import APIFeatures from '../utils/apiFeatures.js';
 import AppError from '../utils/appError.js';
