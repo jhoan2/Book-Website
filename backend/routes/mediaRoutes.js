@@ -12,8 +12,8 @@ import { protect, restrictTo } from '../controllers/authController.js';
 
 const router = express.Router();
 
-router.use(protect);
-router.use(restrictTo('admin'));
+// router.use(protect);
+// router.use(restrictTo('admin'));
 router.route('/').get(getAllMedia).post(createMedia);
 router.route('/:id').patch(updateMedia).get(getMedia).delete(deleteMedia);
 
