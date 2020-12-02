@@ -22,7 +22,8 @@ export default function Landingpage() {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const products = productList;
-
+  const loading = productList.loading;
+  const error = productList.error;
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);
@@ -34,13 +35,19 @@ export default function Landingpage() {
         <br />
       </div>
       <div>
-        <Grid container spacing={3} className={classes.gridContainer}>
-          {products.products.map((product) => (
-            <Grid item key={product._id} xs={12} sm={6} md={4} lg={3}>
-              <CardItem />
-            </Grid>
-          ))}
-        </Grid>
+        {loading ? (
+          <h2>loading</h2>
+        ) : error ? (
+          <h3>{error}</h3>
+        ) : (
+          <Grid container spacing={3} className={classes.gridContainer}>
+            {products.products.map((product) => (
+              <Grid item key={product._id} xs={12} sm={6} md={4} lg={3}>
+                <CardItem product={product} />
+              </Grid>
+            ))}
+          </Grid>
+        )}
       </div>
       <div>
         <br />
