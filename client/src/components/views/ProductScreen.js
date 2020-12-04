@@ -1,24 +1,35 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-// http://localhost:8000/api/v1/media
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import book from "../../components/card/assets/book.jpg";
 
-const ProductScreen = () => {
-  const [data, setData] = useState({ products: [] });
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get("http://localhost:8000/api/v1/media");
-      console.log(response);
-      setData(response.data);
-    };
-    fetchData();
-  }, []);
+const useStyles = makeStyles((theme) => ({
+  gridContainer: {
+    paddingLeft: "50px",
+    paddingRight: "50px",
+  },
+  footer: {
+    height: "50px",
+  },
+}));
+
+export default function ProductScreen() {
+  const classes = useStyles();
+
   return (
-    <ul>
-      {data.products.map((item) => (
-        <li>{item.name}</li>
-      ))}
-    </ul>
+    <div>
+      <div>
+        <Header />
+        <br />
+      </div>
+      <div>
+        <p>hello</p>
+      </div>
+      <div>
+        <br />
+        <Footer className={classes.footer} />
+      </div>
+    </div>
   );
-};
-
-export default ProductScreen;
+}

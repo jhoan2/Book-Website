@@ -24,6 +24,7 @@ export default function Landingpage() {
   const products = productList;
   const loading = productList.loading;
   const error = productList.error;
+
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);

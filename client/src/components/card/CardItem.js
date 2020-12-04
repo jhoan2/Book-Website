@@ -11,7 +11,6 @@ import {
   Button,
 } from "@material-ui/core";
 import "./card.css";
-import book from "./assets/book.jpg";
 import Avatar from "@material-ui/core/Avatar";
 import { red } from "@material-ui/core/colors";
 import GradeIcon from "@material-ui/icons/Grade";
@@ -19,7 +18,7 @@ import MenuBookIcon from "@material-ui/icons/MenuBook";
 import PermMediaIcon from "@material-ui/icons/PermMedia";
 import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo";
 import SaveIcon from "@material-ui/icons/Save";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,23 +36,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CardItem() {
+function CardItem(props) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={<Avatar className={classes.avatar}>J</Avatar>}
-        title="The E-Myth Revisited"
-        subheader="November 14, 2020"
+        title={props.product.name}
       />
       <Divider />
-      {/* <Link to={`/product/${product._id}`}> */}
-      <CardMedia
-        className={classes.media}
-        image={book}
-        title="The E-Myth Revisited"
-      />
-      {/* </Link> */}
+      <Link to={`/product/${props.product._id}`}>
+        <CardMedia
+          className={classes.media}
+          image={props.product.imageCover}
+          title={props.product.name}
+        />
+      </Link>
       <Divider />
       <CardContent>
         <Grid container className={classes.root} spacing={2}>
@@ -61,25 +59,29 @@ function CardItem() {
             <GradeIcon></GradeIcon>
           </Grid>
           <Grid item xs={5} sm={4}>
-            <Typography display="inline">4/5 Rating</Typography>
+            <Typography display="inline">
+              {props.product.ratingAverage}/5 Rating
+            </Typography>
           </Grid>
           <Grid item xs={1} sm={2}>
             <MenuBookIcon>2</MenuBookIcon>
           </Grid>
           <Grid item xs={5} sm={4}>
-            <Typography display="inline">Business</Typography>
+            <Typography display="inline">{props.product.Category}</Typography>
           </Grid>
           <Grid item xs={1} sm={2}>
             <FeaturedVideoIcon></FeaturedVideoIcon>
           </Grid>
           <Grid item xs={5} sm={4}>
-            <Typography display="inline">26 Reviews</Typography>
+            <Typography display="inline">
+              {props.product.reviews} Reviews
+            </Typography>
           </Grid>
           <Grid item xs={1} sm={2}>
             <PermMediaIcon></PermMediaIcon>
           </Grid>
           <Grid item xs={5} sm={4}>
-            <Typography display="inline">Book</Typography>
+            <Typography display="inline">{props.product.mediaType}</Typography>
           </Grid>
         </Grid>
         <Grid
@@ -98,7 +100,9 @@ function CardItem() {
             </Button>
           </Grid>
           <Grid item xs={3}>
-            <Button variant="contained">Details</Button>
+            <Link to={`/product/${props.product._id}`}>
+              <Button variant="contained">Details</Button>
+            </Link>
           </Grid>
         </Grid>
       </CardContent>
