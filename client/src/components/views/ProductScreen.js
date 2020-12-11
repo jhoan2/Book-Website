@@ -14,6 +14,11 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     height: "50px",
   },
+  imageCover: {
+    maxWidth: "50vw",
+    maxHeight: "50vw",
+    backgroundImage: "contain",
+  },
 }));
 
 export default function ProductScreen(match) {
@@ -40,9 +45,28 @@ export default function ProductScreen(match) {
         ) : error ? (
           <h3>{error}</h3>
         ) : (
-          <Grid container>
-            <Grid item>
-              <img src={product.imageCover} alt={product.name} />
+          <Grid container justify="center" alignItems="center">
+            <Grid item xs={10} sm={7} md={7} lg={7}>
+              <img
+                src={product.imageCover}
+                alt={product.name}
+                className={classes.imageCover}
+              />
+            </Grid>
+            <Grid item xs={10} sm={3} md={3} lg={3}>
+              <h2>{product.name}</h2>
+
+              <h4>Description:</h4>
+              <p>{product.description}</p>
+
+              <h4>Category:</h4>
+              <p>{product.Category}</p>
+
+              <h4>Media Type:</h4>
+              <p>{product.mediaType}</p>
+
+              <h4>Average rating</h4>
+              <p>{product.ratingAverage}/5</p>
             </Grid>
           </Grid>
         )}
